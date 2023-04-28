@@ -5,7 +5,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches: [ dev ]
 
 
 jobs:
@@ -18,9 +18,9 @@ jobs:
 
     - name: setup PHP 
       uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          extension: mbstring, pdo_mysql
+      with:
+        php-version: '8.1'
+        extension: mbstring, pdo_mysql
     
     - name: Install Dependencies
       run: composer install
