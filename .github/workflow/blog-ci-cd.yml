@@ -1,1 +1,27 @@
 # this will be basic ci of laravel project
+name: build-ci-cd
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: setup PHP 
+      uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extension: mbstring, pdo_mysql
+    
+    - name: Install Dependencies
+      run: composer install
+      
