@@ -25,5 +25,10 @@ jobs:
     - name: Install Dependencies
       run: composer install
     
+    - name: Prepare Laravel Application
+      run: |
+        cp .env.ci .env 
+        php artisan key:generate
+
     - name: Run Tests
       run: php artisan test
