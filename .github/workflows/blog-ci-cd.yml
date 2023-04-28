@@ -14,13 +14,13 @@ jobs:
 
 
     steps:
-    - uses: actions/checkout@v2
+     - uses: actions/checkout@v2
 
-    - name: setup PHP 
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-        extension: mbstring, pdo_mysql
+     - name: setup PHP 
+       uses: shivammathur/setup-php@v2
+       with:
+         php-version: '8.1'
+         extension: mbstring, pdo_mysql
     
     # - name: Install Dependencies
     #   run: composer install
