@@ -51,7 +51,7 @@ jobs:
         id: docker_meta
         uses: docker/metadata-action@v3
         with:
-          images: registry.digitalocean.com/quantum-private-registry/nova-api-doc-swagger
+          images: amnkashyap/laravelproject
           tags: |
             type=ref,event=branch
             type=sha,prefix={{branch}}
@@ -59,7 +59,7 @@ jobs:
       - name: Login to Docker
         uses: docker/login-action@v1
         with:
-          registry: ${{ secrets.DOCKER_URL }}
+  #        registry: ${{ secrets.DOCKER_URL }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
