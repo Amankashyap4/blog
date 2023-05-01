@@ -52,9 +52,9 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: amnkashyap/laravelproject
-          tags: |
-            type=ref,event=branch
-            type=sha,prefix={{branch}}
+          tags: latest #|
+  #          type=ref,event=branch
+  #          type=sha,prefix={{branch}}
 
       - name: Login to Docker
         uses: docker/login-action@v1
