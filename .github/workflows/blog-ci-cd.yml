@@ -43,7 +43,7 @@ jobs:
         - name: Build & Push Docker image
           uses: mr-smithers-excellent/docker-build-push@v3
           with:
-            image: amnkashyap/angular                                        #amnkashyap/angularproject
+            image: amnkashyap/laravelproject                                      #amnkashyap/angularproject
             tag: latest                                    #projectcicd
             registry: docker.io
             dockerfile: Dockerfile
