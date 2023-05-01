@@ -40,35 +40,45 @@ jobs:
             mkdir -p database
             touch database/database.sqlite
 
-  docker:
-    needs: build
-    runs-on: ubuntu-latest
+        - name: Build & Push Docker image
+          uses: mr-smithers-excellent/docker-build-push@v3
+          with:
+            image: amnkashyap/angular                                        #amnkashyap/angularproject
+            tag: latest                                    #projectcicd
+            registry: docker.io
+            dockerfile: Dockerfile
+            username: ${{ secrets.DOCKER_USERNAME }}      
+            password: ${{ secrets.DOCKER_PASSWORD }}     
 
-    steps:
-      - uses: actions/checkout@v2
+  # docker:
+  #   needs: build
+  #   runs-on: ubuntu-latest
 
-      - name: Docker meta
-        id: docker_meta
-        uses: docker/metadata-action@v3
-        with:
-          images: amnkashyap/laravelproject
-          tags: latest #|
-  #          type=ref,event=branch
-  #          type=sha,prefix={{branch}}
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Login to Docker
-        uses: docker/login-action@v1
-        with:
-  #        registry: ${{ secrets.DOCKER_URL }}
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+  #     - name: Docker meta
+  #       id: docker_meta
+  #       uses: docker/metadata-action@v3
+  #       with:
+  #         images: amnkashyap/laravelproject
+  #         tags: latest #|
+  # #          type=ref,event=branch
+  # #          type=sha,prefix={{branch}}
 
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v1
+  #     - name: Login to Docker
+  #       uses: docker/login-action@v1
+  #       with:
+  # #        registry: ${{ secrets.DOCKER_URL }}
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: build and Push image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: ${{ steps.docker_meta.outputs.tags }}
-          file: ./Dockerfile
+  #     - name: Setup Docker Buildx
+  #       uses: docker/setup-buildx-action@v1
+
+  #     - name: build and Push image
+  #       uses: docker/build-push-action@v2
+  #       with:
+  #         push: true
+  #         tags: ${{ steps.docker_meta.outputs.tags }}
+  #         file: ./Dockerfile
