@@ -40,33 +40,33 @@ jobs:
             mkdir -p database
             touch database/database.sqlite
 
-        # - name: Build & Push Docker image
-        #   uses: mr-smithers-excellent/docker-build-push@v3
-        #   with:
-        #     image: amnkashyap/laravelproject                                      #amnkashyap/angularproject
-        #     tag: latest                                    #projectcicd
-        #     registry: docker.io
-        #     dockerfile: Dockerfile
-        #     username: ${{ secrets.DOCKER_USERNAME }}      
-        #     password: ${{ secrets.DOCKER_PASSWORD }}     
+        - name: Build & Push Docker image
+          uses: mr-smithers-excellent/docker-build-push@v3
+          with:
+            image: amnkashyap/laravelproject                                      #amnkashyap/angularproject
+            tag: latest                                    #projectcicd
+            registry: docker.io
+            dockerfile: Dockerfile
+            username: ${{ secrets.DOCKER_USERNAME }}      
+            password: ${{ secrets.DOCKER_PASSWORD }}     
 
-  docker:
-    needs: build
-    runs-on: ubuntu-latest
+  # docker:
+  #   needs: build
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+  #   steps:
+  #     - uses: actions/checkout@v2
 
 
-      - name: Build & Push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v3
-        with:
-          image: amnkashyap/laravelproject                                      
-          tag: latest                                    
-          registry: docker.io
-          dockerfile: Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}      
-          password: ${{ secrets.DOCKER_PASSWORD }} 
+  #     - name: Build & Push Docker image
+  #       uses: mr-smithers-excellent/docker-build-push@v3
+  #       with:
+  #         image: amnkashyap/laravelproject                                      
+  #         tag: latest                                    
+  #         registry: docker.io
+  #         dockerfile: Dockerfile
+  #         username: ${{ secrets.DOCKER_USERNAME }}      
+  #         password: ${{ secrets.DOCKER_PASSWORD }} 
 
   #     - name: Docker meta
   #       id: docker_meta
